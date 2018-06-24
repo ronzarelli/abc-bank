@@ -1,6 +1,7 @@
 package com.abc;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static java.lang.Math.abs;
@@ -27,10 +28,10 @@ public class Customer {
         return accounts.size();
     }
 
-    public double totalInterestEarned() {
+    public double totalInterestEarned(Date date) {
         double total = 0;
         for (Account a : accounts)
-            total += a.interestEarned();
+            total += a.interestEarned(date);
         return total;
     }
 
@@ -65,8 +66,8 @@ public class Customer {
         //Now total up all the transactions
         double total = 0.0;
         for (Transaction t : a.transactions) {
-            s += "  " + (t.amount < 0 ? "withdrawal" : "deposit") + " " + toDollars(t.amount) + "\n";
-            total += t.amount;
+            s += "  " + (t.getAmount() < 0 ? "withdrawal" : "deposit") + " " + toDollars(t.getAmount()) + "\n";
+            total += t.getAmount();
         }
         s += "Total " + toDollars(total);
         return s;

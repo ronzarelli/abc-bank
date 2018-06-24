@@ -1,6 +1,7 @@
 package com.abc;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Bank {
@@ -27,10 +28,10 @@ public class Bank {
         return number + " " + (number == 1 ? word : word + "s");
     }
 
-    public double totalInterestPaid() {
+    public double totalInterestPaid(Date date) {
         double total = 0;
         for(Customer c: customers)
-            total += c.totalInterestEarned();
+            total += c.totalInterestEarned(date);
         return total;
     }
 

@@ -5,7 +5,27 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.junit.Before;
+
 public class CustomerTest {
+    DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    String dateString = "2018-01-01";
+    String dateString2 = "2017-07-01";
+    String dateString3 = "2017-01-01";
+    
+    Date date, date2, date3;
+    
+    @Before
+    public void initDates() throws ParseException {
+    	date = sdf.parse(dateString);
+    	date2 = sdf.parse(dateString2);
+    	date3 = sdf.parse(dateString2);
+    }
 
     @Test //Test customer statement generation
     public void testApp(){
@@ -15,9 +35,9 @@ public class CustomerTest {
 
         Customer henry = new Customer("Henry").openAccount(checkingAccount).openAccount(savingsAccount);
 
-        checkingAccount.deposit(100.0);
-        savingsAccount.deposit(4000.0);
-        savingsAccount.withdraw(200.0);
+        checkingAccount.deposit(100.0,date3);
+        savingsAccount.deposit(4000.0,date3);
+        savingsAccount.withdraw(200.0,date3);
 
         assertEquals("Statement for Henry\n" +
                 "\n" +
